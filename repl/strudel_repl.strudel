@@ -1,0 +1,21 @@
+// Warm House Minimalista & Experimental
+stack(
+  // 1. Base Rítmica: Bombo suau, clack minimal i hi-hats de fons
+  s("bd:2 [~ clp:1] , bd:2 [~ clp:1]").bank("RolandTR808").gain(0.8),
+  s("~ [~ hh:4] ~ hh:4").gain(0.4).decay(0.05),
+  s("rim*4?").gain(0.3).pan(perlin.range(0.2, 0.8)), // Micro-percussions aleatòries
+
+  // 2. Acords càlids (Warm Chords): Pàgina sonora ambient/deep
+  note("<[c3,eb3,g3,bb3]*4 , [f3,ab3,c4,eb4]>")
+    .s("sawtooth")
+    .lpf("<600 800 500 1000>") // El filtre s'obre i es tanca a poc a poc
+    .lpq(2)
+    .decay(0.6)
+    .sustain(0.2)
+    .delay(0.3).delaytime(0.375).delayfeedback(0.4) // Ecos dub desfasats
+    .gain(0.45),
+
+  // 3. Baix Sub-fons: Nota profunda i suau
+  note("<c1 c1 , f1 g1>").s("sine").gain(0.7).decay(0.4)
+)
+.cpm(118) // Temps relaxat i orgànic
